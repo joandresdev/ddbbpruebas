@@ -1,0 +1,64 @@
+/**
+*   colors.scss
+*   @description: Variables de colores
+*/
+
+
+$black:             #000000;
+$white:             #FFFFFF;
+$darkGray:          #8e8e8e;
+$lightGray:         #E5E5E5;
+$softGray:          #95A5A6;
+$darkBlue:          #2C54B3;
+$lightBlue:         #20bcc9;
+$background:        #F6F6F6;
+$formBackground:    #E5E5E5;
+$border:            #E6E7EA;
+
+$overlayBlue:          rgba(44, 85, 179, 0.849);
+/* Classes de colores para textos*/
+
+.color-white {
+    color: $white;
+}
+
+.color-black {
+    color: $black;
+}
+
+.color-darkBlue {
+    color: $darkBlue;
+}
+
+.color-lightBlue {
+    color: $lightBlue;
+}
+
+
+.color-lightgray {
+    color: $lightGray;
+}
+
+.color-darkgray {
+    color: $darkGray;
+}
+
+.color-softgray {
+    color: $softGray;
+}
+
+/* Clases de colores para backgrounds */
+
+.bg-white { background-color: $white; }
+
+.bg-black { background-color: $black; }
+
+.bg-darkBlue { background-color: $darkBlue; }
+
+.bg-lightBlue { background-color: $lightBlue; }
+
+.bg-lightgray { background-color: $lightGray; }
+
+.bg-darkgray { background-color: $darkGray; }
+
+.bg-softgray { background-color: $softGray; }

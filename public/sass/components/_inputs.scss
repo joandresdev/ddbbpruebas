@@ -1,0 +1,65 @@
+/**
+*   inputs.scss
+*   @description: Estilos para las entradas de texto y archivos
+*/
+
+input, textarea, select, option, label {
+    font-family: $Heebo;
+}
+
+.input {
+    font-size: $fontSmall;
+    font-family: $Heebo;
+    font-weight: $weightSemi;
+    outline: 1px solid transparent;
+    background-color: #EFEFEF;
+    padding: $paddingNormal $paddingMedium;
+}
+
+.input-profile {
+    width: 85%;
+    color: $darkGray;
+    margin-left: 14px;
+    border-bottom: .6px solid $darkGray;
+    background-color: white;
+    padding: 8px;
+    font-size: $fontMini;
+    transition: border-bottom .300s ease-in-out;
+}
+
+.input-profile:focus {
+    border-bottom: .6px solid $lightBlue;
+}
+
+.input-form{
+    width: 100%;
+    color: $darkGray;
+    border-bottom: 2px solid $lightBlue;
+    background-color: transparent;
+    padding: 8px 0;
+    font-size: $fontSmall;
+    font-weight: $weightRegular;
+    transition: border-bottom .300s ease-in-out;
+}
+.input-form:focus {
+    border-bottom: 2px solid $darkGray;
+}
+
+/****************/
+/**** inputs ****/
+/****************/
+.input-info-profile{
+    width: 100%;
+    color: $darkGray;
+    border-bottom: 2px solid $lightBlue;
+    background-color: transparent;
+    padding: 8px 0;
+    font-size: $fontSmall;
+    font-weight: $weightRegular;
+    transition: border-bottom .300s ease-in-out;
+}
+
+.input-info-profile:focus {
+    border-bottom: 2px solid $darkGray;
+}
+

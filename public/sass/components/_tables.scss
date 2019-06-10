@@ -1,0 +1,141 @@
+/**
+*   tables.scss
+*   @description: Estilos unicamente para tablas
+*/
+
+table {
+    font-family: $Heebo;
+}
+
+table{
+    // border-spacing: 1; 
+    border-collapse: collapse; 
+    background: $white;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 4px;
+
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+    -o-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+    -ms-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
+    
+    td,th{ 
+        padding-left: $paddingNormal;
+        font-weight: $weightSemi;
+        
+        &:first-child{ padding-left: $paddingSemi; }
+    }
+
+    thead tr{ 
+        height: 40px;
+        background: $lightBlue;
+        font-size: $fontRegular;
+    }
+
+    thead tr th { 
+        color: $white; 
+        font-weight: $weightLight;
+    }
+    tbody tr td{
+        color: $darkGray; 
+        border-right: 1px solid $border; //Si se necesita el borde derecho, es esa linea
+        &:last-child{ border: 0; }
+    }
+
+    tbody tr{
+        height: 40px;
+        border-bottom: 1px solid $border;
+        
+        &:last-child{ border: 0; }
+    }
+
+    td,th{ 
+        text-align:left;
+		&.l { text-align:right }
+		&.c { text-align:center }
+		&.r { text-align:center }
+	}
+}
+
+
+.table-academic-charge {
+
+    border-radius: inherit;
+
+    td,th{ 
+        padding-left: $paddingNormal;
+        font-weight: $weightSemi;
+        
+        &:first-child{ padding-left: $paddingMedium; }
+    }
+
+    tbody td{ 
+        font-weight: $weightLight;
+        font-size: $fontTiny;
+        text-align: center; 
+        padding: 0;
+        font-weight: $weightLight;
+        &:first-child{ 
+            font-weight: $weightSemi;
+            padding-left: 0; 
+        }
+    }
+
+    thead tr{ 
+        height: 35px;
+        background: $lightBlue;
+        font-size: $fontTiny;
+    }
+
+    thead tr th{
+        border-right: 1px solid $border;
+    }
+    thead tr th:last-child{
+        border-right: 0;
+    }
+
+    tbody tr td{
+        color: $darkGray; 
+        border-right: 1px solid $border; //Si se necesita el borde derecho, es esa linea
+        font-size: $fontMini;
+        &:last-child{ border-bottom: 0}
+    }
+
+    tbody tr{
+        height: 35px;
+        border-bottom: 1px solid $border;
+        
+        &:last-child{ border-bottom: 0}
+    }
+
+    td,th{ 
+        text-align:left;
+		&.l { text-align:right }
+		&.c { text-align:center }
+		&.r { text-align:center }
+	}
+}
+
+.table-datos-alumno {
+    border-radius: inherit;
+    tr th{
+        border-right: 1px solid #2C54B3;
+    }
+
+    tbody tr{
+        height: 35px;
+        border-bottom: 1px solid $border;
+        
+        &:last-child{ border-bottom: 0}
+    }
+
+    td {
+        font-size: $fontTiny;
+        font-weight: $weightSemi;
+        padding-left: $paddingMedium;
+    }
+}

@@ -1,0 +1,47 @@
+/**
+    * kardex.scss
+    * @description: Estilos del kardex
+    * @author: Jazmin Pool
+**/
+
+.kardex{
+    table {
+        thead {
+            tr{
+                height: 40px;
+            }
+        }
+        tr{
+            height: 35px;
+        }
+        td{
+            text-transform: uppercase;
+            font-weight: $weightLight;
+            font-size: $fontTiny;
+        }
+        tbody tr td{
+            border-right: 1px solid $border; //Si se necesita el borde derecho, es esa linea
+            &:last-child{ border: 0; }
+        }
+    
+        tbody tr{
+            border-bottom: 1px solid $border;
+            
+            &:last-child{ border: 0; }
+        }
+    
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+
+}
+
+@media screen and (max-width: 992px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    
+}

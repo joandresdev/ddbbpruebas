@@ -1,0 +1,59 @@
+/**
+    * calificaciones.scss
+    * @description: Estilos de la pagina de calificaciones del alumno
+    * @author: Jazmin Pool
+**/
+
+.calificaciones{
+    .profe-name{
+        color: $darkGray;
+        font-size: $fontText;
+        padding-left: $paddingMedium;
+    }
+    table {
+        border-radius: 5px;
+    }
+    table thead  tr{
+        height: 35px;
+    }
+  
+    thead tr th {
+        font-size: $fontSmall;
+        color: $white; 
+        font-weight: $weightLight;
+        border-right: 1px solid $border;
+    
+     &:last-child{
+        border-right: 0;
+    }
+    }
+
+    tbody tr td{
+        border-right: 1px solid $border; //Si se necesita el borde derecho, es esa linea
+        &:last-child{ border: 0; }
+    }
+
+   
+
+    table tbody tr {
+        font-size: .9rem;
+        height: 30px;
+        height: $paddingLarge;
+    }
+    table tbody td {
+        font-weight: $weightLight;
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+
+}
+
+@media screen and (max-width: 992px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    
+}

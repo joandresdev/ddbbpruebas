@@ -1,0 +1,49 @@
+/**
+    * login.scss
+    * @description: Estilos del login
+    * @author: Jazmin Pool
+**/
+
+.login{
+    .background-login{
+        position: relative;
+        width: 100%; 
+        height: 100vh;
+        background-size: cover;
+        background-position: right;
+    }
+    .icon-form{
+        color: $lightBlue;
+        margin-right: $marginSemi;
+    }
+    .card-login{
+        width: 38%;
+        height: auto;
+        margin-left: $marginHuge;
+
+    }
+
+    .tittle {
+        transform: scaleX(1.12);
+    }
+    .derechos{
+        bottom: 0;
+        position: absolute;
+        p {
+        font-size: $fontMicro;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+@media screen and (max-width: 768px) {
+    
+}

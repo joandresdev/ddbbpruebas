@@ -1,0 +1,143 @@
+/**
+*   fonts.scss
+*   @description: Estilos de fuente y tipografía
+*/
+
+/*    Font families    */
+ @import url('https://fonts.googleapis.com/css?family=Heebo&display=swap');
+//  @import url('https://fonts.googleapis.com/css?family=Heebo:300,400,500,700,800&display=swap');
+    
+$Heebo:  'Heebo', sans-serif;
+
+/*    Font sizes    */
+
+$fontMicro:     0.7rem;
+$fontMini:      0.8rem;
+$fontTiny:      0.9rem;
+$fontText:      0.93rem;
+$fontSmall:     1rem;
+$fontRegular:   1.2rem;
+$fontMedium:    1.4rem;
+$fontLarge:     1.6rem;
+$fontHuge:      1.8rem;
+$fontDouble:    2rem;
+$fontTriple:    3rem;
+$fontQuadruple: 4rem;
+
+.font-quadruple {font-size: $fontQuadruple;}
+
+.font-triple { font-size: $fontTriple; }
+
+.font-double { font-size: $fontDouble; }
+
+.font-huge { font-size: $fontHuge; }
+
+.font-large {font-size: $fontLarge;}
+
+.font-medium {font-size: $fontMedium;}
+
+.font-regular { font-size: $fontRegular; }
+
+.font-small { font-size: $fontSmall; }
+
+.font-text { font-size: $fontText; }
+
+.font-tiny { font-size: $fontTiny; }
+
+.font-mini { font-size: $fontMini; }
+
+.font-micro { font-size: $fontMicro; }
+
+
+/*    Font weight   */
+
+$weightLight: 300;
+$weightRegular: 400;
+$weightSemi: 600;
+$weightBold: 700;
+
+.weight-bold { font-weight: $weightBold; }
+
+.weight-semi { font-weight: $weightSemi; }
+
+.weight-regular { font-weight: $weightRegular; }
+
+.weight-light { font-size: $weightLight }
+
+a {
+    font-family: $Heebo;
+    font-size: $fontSmall;
+}
+
+li { 
+    font-family: $Heebo; 
+    font-size: $fontSmall;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: $black;
+    font-family: $Heebo;
+}
+
+h1 {
+    font-size: $fontHuge;
+    font-weight: $weightBold;
+}
+
+h2 {
+    font-size: $fontLarge;
+    font-weight: $weightBold;
+}
+
+h3 {
+    font-size: $fontMedium;
+    font-weight: $weightSemi;
+}
+
+h4 {
+    font-size: $fontRegular;
+    font-weight: $weightSemi;
+}
+
+h5 {
+    font-size: $fontText;
+    font-weight: $weightRegular;
+}
+
+h6 {
+    font-size: $fontMedium;
+    font-weight: $weightRegular;
+}
+
+p {
+    font-size: $fontText;
+    line-height: 22px;
+    color: $black;
+}
+
+/*   Decorators    */
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+::selection {
+    color: $white;
+    background-color: $black;
+}

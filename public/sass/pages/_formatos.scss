@@ -1,0 +1,52 @@
+ /**
+    * formatos.scss
+    * @description: Estilos de la página de los formatos para los alumnos
+**/
+
+
+.formatos {
+
+    .container-cards {
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        grid-gap: 24px;
+    }
+    .box-file {
+        border-radius: 8px;
+        width: 100%;
+        -webkit-box-shadow:  0 2px 6px 0 rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+        position: relative;
+        transition: display .300s ease-in-out;
+        .file, .hover-file {
+            border-radius: 8px;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .hover-file {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: all 300ms;
+            background-color: $overlayBlue;
+            
+        }
+
+        &:hover {
+            .hover-file {
+            opacity: 1;
+          }
+        }
+    }
+   
+    .btn-archivos{padding: $paddingNormal $paddingHuge;}
+}
+

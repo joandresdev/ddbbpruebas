@@ -1,0 +1,49 @@
+ /**
+    * profile.scss
+    * @description: Estilos de la página de perfil
+**/
+
+.profile {
+    // font-family: $Heebo;
+    background-color: $background;
+
+    .container-info-student{
+        background: $lightGray;
+        width: 315px;
+        min-height: 84vh;
+        padding-top: $paddingHuge;
+    }
+    
+    .frm-info-gral{
+        padding-top: $paddingNormal;
+
+        .container-input-info-gral{
+            width: 90%;
+            padding-top: $paddingMedium;
+        }
+        .container-input-large{
+            width: 100%;
+            padding-top: $paddingMedium;
+        }
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+}
+
+@media screen and (max-width: 992px) {
+    .profile {
+        .frm-info-gral{
+            padding-top: $paddingNormal;
+            .container-input-info-gral{
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+}

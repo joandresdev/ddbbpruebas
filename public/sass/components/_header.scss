@@ -1,0 +1,43 @@
+/**
+*   header.scss
+*   @description: Estilos para los Headers
+*/
+
+.header-example {
+    background-color: $lightBlue;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 50px;
+}
+
+.header-tittle {
+    position: relative;
+    width: 100%; 
+    height: 90px;
+    background-size: cover;
+    background-position: center;
+}
+
+.header-general-data {
+    position: relative;
+    width: 100%; 
+    height: 110px;
+    background-size: cover;
+    background-position: center;
+    .space-header {
+        width: 390px;
+    }
+    .container-img-profile{
+        position: absolute;
+        height: auto;
+        top: 20px;
+        left: 51px;
+        .img-profile{
+            border-radius: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 145px;
+            height: 145px;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+/**
+*   style.scss
+*   @description: Constructor de la hoja de estilos
+*   @variables: dev: boolean: Activa las opciones de desarrollo
+*/
+
+$dev: false;
+
+/*  
+* 1.- Componentes: Todos los elementos posibles
+*/
+
+
+/*      Core       */
+
+@import './core/dev';
+@import './core/trejocode';
+@import './core/colors';
+@import './core/fonts';
+@import './core/animations';
+@import './core/spacing';
+
+/*      Libs     */
+
+/*      Helpers      */
+
+
+/*      Componentes      */
+
+@import './components/buttons';
+@import './components/inputs';
+@import './components/header';
+@import './components/cards';
+@import './components/left-main';
+@import './components/tables';
+
+/*      Páginas      */
+
+@import './pages/calificaciones';
+@import './pages/horario';
+@import './pages/kardex';
+@import './pages/login';
+
+@import './pages/example';
+@import './pages/profile';
+@import './pages/formatos';
+@import './pages/carga-academica';
+@import './pages/errors.scss';
+
+@if $dev { @include dev; }

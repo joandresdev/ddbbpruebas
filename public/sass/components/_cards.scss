@@ -1,0 +1,68 @@
+/**
+*   header.scss
+*   @description: Estilos para las cards
+*/
+
+.card-example {
+    height: 190px;
+    width: 100%;
+    background-color: cornflowerblue;
+    padding: 8px;
+    position: relative;
+    
+    .img-card {
+        height: 140px;
+        width: 100%;
+    }
+
+    .tittle {
+        padding: $paddingNormal 0;
+    }
+
+    .icon-star {
+        position: absolute;
+        color: white;
+        font-size: 2.5rem;
+        bottom: 24px;
+        right: 17px;
+    }
+}
+
+.card-data {
+    padding: 18px 16px;
+    background-color: white;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-right: $marginSemi;
+    &:nth-child(4) { margin-right: 0 }
+
+    h4 {
+        color: $darkGray;
+        font-size: $fontRegular;
+    }
+}
+
+.card-login{
+    padding: $paddingSemi $paddingLarge;
+    background-color: white;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-right: $marginSemi;
+    &:nth-child(4) { margin-right: 0 }
+
+    h2 {
+        color: $darkBlue;
+        font-weight: $weightBold;
+    }
+
+    h3{
+        font-weight: $weightLight;
+        color: $darkGray;
+    }
+}
+
+@media screen and (max-width: 768px) { 
+    .card-example {
+        margin-bottom: $marginMedium;
+    }
+}
