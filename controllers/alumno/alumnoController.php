@@ -39,6 +39,12 @@ class AlumnoController extends Controller
 			$this->localRedirect('login');
 		}
 		
+	} 
+	
+	public function getKardex(){
+		echo "Estas buscando informacion del kardex <br>";
+		$dbfData = $this->model->kardex(201600111);
+		die(var_dump($dbfData));
 	}
 
 

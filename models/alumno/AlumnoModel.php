@@ -49,6 +49,29 @@ class AlumnoModel extends Model
 		return null;
 
 	}
+
+	//Retorna informacion del kardex, solo la importante
+	public function kardex($matricula){
+
+		$datos = $this->DB->DBFconnect("DKARDE");
+		$info = array();
+		$aux = 0;
+
+		if($datos){
+
+			$numero_registros = dbase_numrecords($datos);
+			for($i = 1; $i <= $numero_registros; $i++){
+				$fila = dbase_get_record($datos, $i);
+				if(strcmp($fila[0], $matricula) == 0){
+					for($j = 0; $j < 9; $j++){
+						$info[$aux][$j] = $fila[$j];
+					}
+					$aux++;
+				}
+			}
+			return $info;
+		}
+	}
 }
 
 
