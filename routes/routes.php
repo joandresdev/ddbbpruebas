@@ -9,5 +9,6 @@
 
 
 	$this->newRoute('alumnos/datos','alumno/alumnoController','datosGenerales');
+	$this->newRoute('alumnos/cambiocontraseña', 'alumno/alumnoController', 'changePass');
 
 ?>

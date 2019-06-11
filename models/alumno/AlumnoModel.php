@@ -49,6 +49,21 @@ class AlumnoModel extends Model
 		return null;
 
 	}
+	public function updatePasswordUser($matricula)
+	{
+		$con = $this->DB->DBFconnect('DALUMN');
+		//$db = dbase_open('C:/xampp/htdocs/testDbf/tmp/testo.dbf', 2);
+
+
+		/*if ($db) {
+			$row = dbase_get_record_with_names($db, 1);
+			unset($row['deleted']);
+			$row['date'] = date('Ymd');
+			dbase_replace_record($db, $row, 1);
+			dbase_close($db);
+		}*/
+		return "Aquí se ejecutaría el código de arriba y cambiaría la contraseña... Si sirviera :'v";
+	}
 }
 
 
