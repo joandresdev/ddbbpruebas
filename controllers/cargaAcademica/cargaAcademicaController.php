@@ -31,13 +31,15 @@ class CargaAcademicaController extends Controller
         if ($this->validatorAuth($this->auth)) {
 
             $this->render();	
-            $getAcademicData = $this->model->getAcademicData();
+            $getAcademicData = $this->model->getAcademicData($_SESSION['usuario']['matricula']);
             var_dump($getAcademicData);   
             //$this->render(); //Se debería de poner el render hasta abajo por si ocurre un error al traer los datos
             }else{
                 $this->localRedirect('login');
             }
-	}
+  }
+  
+  
 
 }
 

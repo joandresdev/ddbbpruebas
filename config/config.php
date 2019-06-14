@@ -1,6 +1,6 @@
 <?php  
 // PROJECT PATH
-	define('URL', 'http://localhost/ProyectoIntegrador-0/ddbbpruebas/');
+	define('URL', 'http://localhost/ddbbpruebas/');
 
 
 // DATABASE MYSQL
