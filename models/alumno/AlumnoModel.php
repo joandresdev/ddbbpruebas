@@ -72,6 +72,63 @@ class AlumnoModel extends Model
 			return $info;
 		}
 	}
+	public function getCalif($matricula)
+	{
+				
+				$datos= "";
+				//Connexion a los dbf
+				$con = $this->DB->DBFconnect('DLista');
+				$aux =[];
+				// Validaci[on simple
+				if($con)
+				{
+					//El numero de registro  que contiene 
+					$numero_registros = dbase_numrecords($con);
+	
+					for($i=1; $i<=$numero_registros;$i++) 	
+					{
+						//devuelve los registros
+	
+							$fila = dbase_get_record_with_names($con, $i);
+								
+							//Se realiza una validación para que la matrícula selecionada sea igual a la matricula que esta recibiendo
+	
+							if(strcmp($fila["Aluctr"],$matricula)== 0)
+							{
+								$aux =
+								[
+								
+									
+									'Materia'  			  =>$fila['Matcve'],
+									'CalifPrimerParcial'   => $fila['Lispa1'],
+									'CalifSegundoParcial'  =>$fila['Lispa2'],
+									'CalifTercerParcial'   =>$fila['Lispa3'],
+									'CalifCuartoParcial'   =>$fila['Lispa4'],
+									'CalifQuintoParcial'   =>$fila['Lispa5']
+	
+	
+	
+	
+	
+								];
+							break;
+									
+							}
+					}
+					return $aux;
+					//cierro la conexion
+					dbase_close($con);
+				}
+			return null;
+	}
+
+
+
+
+
+
+
+
 }
 
 
