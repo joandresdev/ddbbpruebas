@@ -40,10 +40,10 @@ class AlumnoController extends Controller
 		}
 		
 	} 
-	
+
 	public function getKardex(){
 		echo "Estas buscando informacion del kardex <br>";
-		$dbfData = $this->model->kardex(201600111);
+		$dbfData = $this->model->kardex(201600110);
 		die(var_dump($dbfData));
 	}
 
