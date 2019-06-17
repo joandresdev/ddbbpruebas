@@ -41,15 +41,17 @@ $datos= $this->getDbf("DCALUM");
 	
 public function getMaterias($matricula){
 		$datos= $this->getDbf("DLISTA");
+		
 		if(count($datos)>0 && is_array($datos)){
 		  foreach ($datos as $key=>$value) {
 			  if(is_array($value) && count($value)>0){
 				  if($value[1]==$matricula){
-				  	$resp = $value[0].$value[2];
-					return $resp;
+				  	$resp = $value[0];
+					
 				  }
 			  }
 			}
+			return $resp;
 		}
 	}
 //------------------------------------------------------------------------
@@ -58,7 +60,7 @@ public function getMaterias($matricula){
 public function buscar(){
 
 		echo "Estas buscando los datos de un alumno";
-		$dbfData = $this->model->getAlumno(3163,2,'B','07A');
+		$dbfData = $this->model->getAlumno(3163,2,'B',02);
 		// primer parametro clave de plan de estudio, segundo, clave de alumno 1 ,  3ro clave de grupo alumno, 4to Cuatrimestre actual y grupo actual. 
 		//datos de muestra
 		//solo estan los horarios de 7mo cuatrimestre para abajo - Comprobar con DLISTA y DGRUPO y DMATER
