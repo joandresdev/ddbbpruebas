@@ -40,12 +40,12 @@
                             </div>
                             <div class="row item-left justify-center">
                                 <div class = "column">
-                                    <h4 class="color-white weight-regular font-small"><a href="<?php echo constant('URL'); ?>xd">Calificaciones</a></h4>
+                                    <h4 class="color-white weight-regular font-small"><a href="<?php echo constant('URL'); ?>alumnos/cali">Calificaciones</a></h4>
                                 </div>
                             </div>
                             <div class="row item-left justify-center">
                                 <div class="column">
-                                    <h4 class="color-white weight-regular font-small"><a href="<?php echo constant('URL'); ?>xd">Kardex</a></h4>
+                                    <h4 class="color-white weight-regular font-small"><a href="<?php echo constant('URL'); ?>alumnos/infoKardex">Kardex</a></h4>
                                 </div>
                             </div>
                             <div class="row item-left justify-center">

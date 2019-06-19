@@ -12,6 +12,7 @@ class AlumnoController extends Controller
 	function __construct()
 	{
 
+
 		$this->auth = new AuthValidator();
 		$this->validatorAuth($this->auth);
 		// if (!$auth->makeAuth()) 
@@ -47,7 +48,21 @@ class AlumnoController extends Controller
 		die(var_dump($dbfData));
 	}
 
+	public function getcalif()
+	{
+		echo "Estoy buscando las  califiaciones prro <br><br>";
+		//$dbf= $this ->model->getcalif(201600088,$this->model->getPeriodo($aux));
+		
+	$dbf= $this ->model->getcalif(201600088,3192);
+		die(var_dump($dbf));
+	}
+	public function getPeriodo()
+	{
+		echo "Te daré  el período actual <br><br>";
+		$dbf= $this ->model->getPeriodo(201600088);
+		die(var_dump($dbf));
 
+	}
 	
 
 }

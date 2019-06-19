@@ -15,7 +15,7 @@ class Controller
 
 	public function __construct()
 	{
-        session_start();
+
 		// echo "<br> Controller extended <br>";
 		$this->view =  new View();
 	}

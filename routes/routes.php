@@ -12,4 +12,10 @@
 
 	$this->newRoute('alumnos/infoKardex', 'alumno/alumnoController', 'getKardex');
 
+	//$this->newRoute('alumnos/cali', 'alumno/alumnoController', 'getPeriodo');
+
+
+	$this->newRoute('alumnos/cali', 'alumno/alumnoController', 'getcalif');
+
+
 ?>

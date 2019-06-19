@@ -1,6 +1,6 @@
 <?php  
 // PROJECT PATH
-	define('URL', 'http://localhost/ddbbpruebas/');
+	define('URL', 'http://localhost/fram-source/');
 
 
 // DATABASE MYSQL
