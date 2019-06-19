@@ -9,6 +9,9 @@
 
 
 	$this->newRoute('alumnos/datos','alumno/alumnoController','datosGenerales');
+	$this->newRoute('alumnos/cambiocontraseña', 'alumno/alumnoController', 'changePass');
+
+	$this->newRoute('alumnos/cargaAcademica', 'cargaAcademica/cargaAcademicaController', 'academicDataMethod')
 
 	$this->newRoute('alumnos/infoKardex', 'alumno/alumnoController', 'getKardex');
 
