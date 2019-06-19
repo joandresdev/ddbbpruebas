@@ -47,6 +47,12 @@ class AlumnoController extends Controller
 		die(var_dump($dbfData));
 	}
 
+	public function changePass()
+	{
+		echo "cambio de contraseña function";
+		$datos = $this->model->updatePasswordUser("201600101");
+		var_dump($datos);
+	}
 
 	
 
