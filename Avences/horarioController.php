@@ -84,6 +84,11 @@ class HorarioController extends Controller
         $dbfData = $this->model->getmatter(3192, 201600057);
         die(var_dump($dbfData));
     }
+    public function MaterNombre(){
+        echo"Estas buscando las materias";
+        $dbfData = $this->model->getMaterNombre('');
+        die(var_dump($dbfData));
+    }
 
 }
 ?>

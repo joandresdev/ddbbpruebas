@@ -155,6 +155,28 @@ public function getPeriodo($clavedeplan)
               }
 
     }
+    public function getMaterNombre($matricula)
+    {
+        $datos = $this->DB->DBFconnect('DMATER');
+        $info = array();
+        $aux = 0;
+
+        if($datos){
+
+            $numero_registros = dbase_numrecords($datos);
+            for($i = 1; $i <= $numero_registros; $i++){
+                $fila = dbase_get_record($datos, $i);
+                if(strcmp($fila[0], $matricula) == 0){
+                    $info=$fila[2];
+                    $aux++;
+                }
+            }
+            return (int)$info;
+
+
+        }
+
+    }
     public function getCarrera($Carcb)
     {
         $datos = $this->DB->DBFconnect('DCARRE');
