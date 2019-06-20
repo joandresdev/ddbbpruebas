@@ -105,6 +105,52 @@ class AlumnoModel extends Model
 
 	}
 
+	/* Retorna el nombre de la materia
+	 * La informacion del nombre de la materia se obtiene del DBF DMATER
+	 * solo retorna el nombre de acuerdo a la clave de la materia
+	 * Informacion de las columnas del DBF DMATER:
+	 * MATCVE = clave de la materia
+	 * MATNOM = nombre de la materia
+	 */
+	public function materia($claveMateria){
+
+		$datos = $this->DB->DBFconnect("DMATER");
+
+		if($datos){
+
+			$numero_registros = dbase_numrecords($datos);
+			for($i = 1; $i <= $numero_registros; $i++){
+				$fila = dbase_get_record_with_names($datos, $i);
+				if(strcmp($fila["MATCVE"], $claveMateria) == 0){
+					return $fila['MATNOM'];
+				}
+			}
+		}
+	}
+
+	/* Retorna la fecha del periodo
+	 * La informacion de la fecha del periodo se obtiene del DBF DPERIO
+	 * solo retorna la fecha de acuerdo a la clave del periodo
+	 * Informacion de las columnas del DBF DPERIO:
+	 * PDOCVE = clave del periodo
+	 * PDODES = descripcion del periodo (fechas)
+	 */
+	public function periodo($clavePeriodo){
+
+		$datos = $this->DB->DBFconnect("DPERIO");
+
+		if($datos){
+
+			$numero_registros = dbase_numrecords($datos);
+			for($i = 1; $i <= $numero_registros; $i++){
+				$fila = dbase_get_record_with_names($datos, $i);
+				if(strcmp($fila["PDOCVE"], $clavePeriodo) == 0){
+					return $fila['PDODES'];
+				}
+			}
+		}
+	}
+
 	/* Retorna la informacion necesaria para la vista del kardex.
 	 * La informacion de los creditos la obtiene del metodo creditos.
 	 * La informacion del kardex la obtiene del DBF DKARDE.
@@ -112,37 +158,44 @@ class AlumnoModel extends Model
 	 * posterior a eso (las siguientes posiciones del array) se encuentra la informacion del
 	 * kardex, use el segundo for para introducir solo los datos necesarios en el array.
 	 * Informacion de los valores del array info (despues de la informacion de los creditos):
-	 * 0 = clave de la materia
-	 * 1 = calificacion de la materia
-	 * 2 = forma en que se paso la materia (en el kardex la columna se llama Op.)
-	 * 3 = clave del periodo en el que se curso la primera vez
-	 * 4 = cuatrimestre en el que se curso la primera vez
-	 * 5 = dato vacio que no se que es
-	 * 6 = clave del periodo en el que se curso la segunda vez (si es que reprobo)
-	 * 7 = cuatrimestre en el que se curso la segunda vez (si es que reprobo)
-	 * En cuanto a los periodos y materias solo retorno las claves, no las fechas y nombre
+	 * claveMat 	= clave de la materia
+	 * nombreMat 	= nombre de la materia
+	 * calfMat 		= calificacion de la materia
+	 * opMat 		= forma en que se paso la materia (en el kardex la columna se llama Op.)
+	 * cuatriPri 	= cuatrimestre en el que se curso la primera vez
+	 * periodPri 	= clave del periodo en el que se curso la primera vez
+	 * cuatriSeg 	= cuatrimestre en el que se curso la segunda vez (si es que reprobo)
+	 * periodSeg 	= clave del periodo en el que se curso la segunda vez (si es que reprobo)
+	 * especial 	= fecha en que se hizo una evaluacion especial (global)
 	 */
 	public function kardex($matricula){
 
 		$datos = $this->DB->DBFconnect("DKARDE");
 		$info = array();
-		$aux = 1;
 		$auxClase = new AlumnoModel;
 
-		$info[0][0] = $auxClase->creditos($matricula);
+		$info[0]['creditos'] = $auxClase->creditos($matricula);
 
 		if($datos){
 
 			$numero_registros = dbase_numrecords($datos);
 			for($i = 1; $i <= $numero_registros; $i++){
 				
-				$fila = dbase_get_record($datos, $i);
-				if(strcmp($fila[0], $matricula) == 0){
-					
-					for($j = 1; $j < 9; $j++){
-						$info[$aux][$j-1] = $fila[$j];
-					}
-					$aux++;
+				$fila = dbase_get_record_with_names($datos, $i);
+				if(strcmp($fila["ALUCTR"], $matricula) == 0){
+
+					$aux = [
+							'claveMat' 		=> $fila['MATCVE'],
+							'nombreMat' 	=> $auxClase->materia($fila['MATCVE']),
+							'calfMat'   	=> $fila['KARCAL'],
+							'opMat' 		=> $fila['TCACVE'],
+							'cuatriPri' 	=> $fila['KARNPE1'],
+							'periodPri' 	=> $auxClase->periodo($fila['PDOCVE1']),
+							'cuatriSeg' 	=> $fila['KARNPE2'],
+							'periodSeg' 	=> $auxClase->periodo($fila['PDOCVE2']),
+							'especial'  	=> $fila['KARFEC']
+					];
+					array_push($info, $aux);  
 				}
 			}
 			return $info;
