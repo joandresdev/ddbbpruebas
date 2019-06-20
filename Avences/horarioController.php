@@ -50,6 +50,10 @@ class HorarioController extends Controller
 
 		die(var_dump($dbfData));
 	}*/
+	public function buscarGrupoActual(){
+		$dbfData = $this->model->getGrupoActual('matricula');
+		die(var_dump($dbfData));
+	}
 
 	public function buscarclave(){
 

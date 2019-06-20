@@ -70,6 +70,35 @@ class horarioModel extends Model
         }
         return null;
 	}
+  public function getGrupoActual ($matricula)
+  {
+    $con = $this->DB->DBFconnect('DCALUM');
+        $aux = null;
+
+        if ($con) {
+            $numero_registros = dbase_numrecords($con);
+
+
+          for ($i = 1; $i <= $numero_registros; $i++) {
+
+              $fila = dbase_get_record_with_names($con, $i);
+
+              if (strcmp($fila["ALUCTR"],$matricula) == 0) {
+                      // $aux = $fila;
+                      $aux = [
+                            'estudia' => "0".$fila["CALNPE"].$fila["CALGPO"]
+                      ];
+                      break;
+              }
+
+
+          }
+
+          dbase_close($con);
+          return $aux;
+        }
+        return null;
+  }
 
 
 	public function getClave($matricula)
