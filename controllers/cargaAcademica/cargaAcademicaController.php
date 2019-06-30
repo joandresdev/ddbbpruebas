@@ -32,7 +32,12 @@ class CargaAcademicaController extends Controller
 
             $this->render();	
             $getAcademicData = $this->model->getAcademicData($_SESSION['usuario']['matricula']);
-            var_dump($getAcademicData);   
+
+            $getOnlyProffNames = $this->model->getOnlyProffNames($_SESSION['usuario']['matricula']); /* Para Nerino: Obtiene el array de los nombres de los profesores */
+            $getOnlySubjectNames = $this->model->getOnlySubjectNames($_SESSION['usuario']['matricula']); /* Para Nerino: Obtiene el array del nombre de las materias */
+            //$getProffSubjectNames = $this->model->getProffSubjectNames($_SESSION['usuario']['matricula']); /* Para Nerino: Obtiene un array con el nombre de los profesores y el de las materias por si lo necesitas, si no ps elimina esta linea... */
+
+            var_dump($getOnlyProffNames);
             //$this->render(); //Se debería de poner el render hasta abajo por si ocurre un error al traer los datos
             }else{
                 $this->localRedirect('login');

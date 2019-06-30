@@ -16,15 +16,12 @@ class CargaAcademicaModel extends Model
 		 * en los DBF* */
 		$cargaMaterias=$this->procesarDatosMaterias($matricula);
 		$datosAlumno= $this->procesarDatosPeriodo($matricula);
-
+		//$proffAndSubjectNames = $this->getProffSubjectNames($matricula);
+		//$testArr=array_merge($proffAndSubjectNames);
+		//die(var_dump($testArr));
 		$newArr=array_merge($datosAlumno,$cargaMaterias);
-
-		die(var_dump($newArr));
-
-
-		return $datosAlumno;
-		
-	
+		//die(var_dump($newArr));
+		return $newArr;
 
 	}
 
@@ -102,15 +99,12 @@ class CargaAcademicaModel extends Model
 							'nombre'    => $fila['ALUAPP'].' '.$fila['ALUAPM'].' '.$fila['ALUNOM'],
               		];
               		break;
-              }
-              
-              
+              }           
 		  }
           dbase_close($con);
           return $aux;
 		}
 		return null;
-
 	}
 
 	/**
@@ -378,9 +372,222 @@ class CargaAcademicaModel extends Model
 		}
 		return null;
 	}
+
+	/**
+	 * Descripcion: Se obtiene únicamente las claves de las materias que se está cursando, filtrando los datos que trae getMateriasCargaH
+	 * Autor: Juan Octaviano
+	 * Fecha: 29/06/2019* 
+	 * */
+
+	public function getClaveMateria($matricula)
+	{
+		$aux=$this->getMateriasCargaH($matricula);
+		$allKeySubjects = array();
+
+		for($i = 0; $i <= (count($aux) - 1); $i++){
+			$allKeySubjects[$i] = $aux[$i]["clave_materia"];
+		}
+		
+		return $allKeySubjects;
 	}
-	
-	
+	/**
+	 * Descripcion: Se obtiene los turnos en qué está cursando las materias el alumno ej: Samos que cursa una materia en la tarde y las demás en la mañana. Esto para evitar errores.
+	 * Autor: Juan Octaviano
+	 * Fecha: 29/06/2019* 
+	 * */
+	public function getTurnosAlumno($matricula)
+	{
+		$aux=$this->getMateriasCargaH($matricula);
+		$allKeysTurns = array();
 
+		for($i = 0; $i <= (count($aux) - 1); $i++){
+			$allKeysTurns[$i] = $aux[$i]["grupo"];
+		}
 
+		return $allKeysTurns;
+	}
+	/**
+	 * Descripcion: Se obtiene los periodos en qué está cursando las materias el alumno Esto se usa para mejorar la búsqueda en mergeProffSubjectKeys.
+	 * Autor: Juan Octaviano
+	 * Fecha: 29/06/2019* 
+	 * */
+	public function getPeriodosAlumno($matricula)
+	{
+		$aux=$this->getMateriasCargaH($matricula);
+		$allKeysPeriods = array();
+
+		for($i = 0; $i <= (count($aux) - 1); $i++){
+			$allKeysPeriods[$i] = $aux[$i]["periodo"];
+		}
+		
+		return $allKeysPeriods;
+	}
+	/**
+	 * Descripcion: Se junta y devuelve en un array las claves de las materias con las claves de los maestros.
+	 * Autor: Juan Octaviano
+	 * Fecha: 29/06/2019* 
+	 * */
+	public function mergeProffSubjectKeys($matricula)
+	{
+		$con = $this->DB->DBFconnect('DGRUPO');
+		$aux = Array();
+		$allSbujects=$this->getClaveMateria($matricula);
+		$allTurns=$this->getTurnosAlumno($matricula);
+		$allPeriods=$this->getPeriodosAlumno($matricula);
+		
+		if ($con) {
+			$numero_registros = dbase_numrecords($con);
+			for	 ($j = 0; $j <= (count($allSbujects) - 1); $j++)
+			{
+				for ($i = 1; $i <= $numero_registros; $i++) {
+					$fila = dbase_get_record_with_names($con, $i);
+					if (strcmp($fila["MATCVE"],$allSbujects[$j]) == 0) {
+					  if (strcmp($fila["GPOCVE"],$allTurns[$j]) == 0) {
+						  if(strcmp($fila["PDOCVE"],$allPeriods[$j]) == 0){
+								$aux[$j] = array(
+									'clave_profesor'  => $fila['PERCVE'],
+									'clave_materia' => $fila['MATCVE'],
+							);
+							break;
+						  }
+					  	}
+					}              
+				}
+			}
+			dbase_close($con);
+			return $aux;
+		}
+		return $aux;
+	}
+	/**
+	 * Descripcion: Método final que obtiene y devuelve en un array el Nombre de las materias y el Nombre de los profesores que imparten dichas materias actualmente.
+	 * Autor: Juan Octaviano
+	 * Fecha: 30/06/2019* 
+	 * */
+	public function getProffSubjectNames($matricula)
+	{
+		$allProffNames = array();
+		$allSubjectsNames = array();
+		$allProffKeys = array();
+		$allSubjectsKeys = array();
+
+		$conSubjects = $this->DB->DBFconnect('DMATER');
+		$conProff = $this->DB->DBFconnect('DPERSO');
+		$mergedData = $this->mergeProffSubjectKeys($matricula);
+
+		for($i = 0; $i <= (count($mergedData) - 1); $i++){
+			$allProffKeys[$i] = $mergedData[$i]["clave_profesor"];
+		}
+		for($i = 0; $i <= (count($mergedData) - 1); $i++){
+			$allSubjectsKeys[$i] = $mergedData[$i]["clave_materia"];
+		}
+
+		if ($conProff) {
+			$numero_registros = dbase_numrecords($conProff);
+			for	 ($j = 0; $j <= (count($allProffKeys) - 1); $j++)
+			{
+				for ($i = 1; $i <= $numero_registros; $i++) {
+					$fila = dbase_get_record_with_names($conProff, $i);
+					if (strcmp($fila["PERCVE"],$allProffKeys[$j]) == 0) {
+						$allProffNames[$j] = array(
+							'nombre_profesor'  => $fila['PERNOM'],
+							'apellido_profesor'  => $fila['PERAPE'],
+						);
+					break;  	
+					}              
+				}
+			}
+		}
+
+		if ($conSubjects) {
+			$numero_registros = dbase_numrecords($conSubjects);
+			for	 ($j = 0; $j <= (count($allSubjectsKeys) - 1); $j++)
+			{
+				for ($i = 1; $i <= $numero_registros; $i++) {
+					$fila = dbase_get_record_with_names($conSubjects, $i);
+					if (strcmp($fila["MATCVE"],$allSubjectsKeys[$j]) == 0) {
+						$allSubjectsNames[$j] = array(
+							('nombre_materia ')  => $fila['MATNOM'],
+						);
+					break;  	
+					}              
+				}
+			}
+		}
+		$allData = array_merge($allProffNames,$allSubjectsNames);
+
+		return $allData;
+	}
+	/**
+	 * Descripcion: Método final que obtiene y devuelve en un array únicamente el Nombre de los profesores que tiene el alumno actualmente.
+	 * Autor: Juan Octaviano
+	 * Fecha: 30/06/2019* 
+	 * */
+	public function getOnlyProffNames($matricula)
+	{
+		$allProffNames = array();
+		$allProffKeys = array();
+
+		$conProff = $this->DB->DBFconnect('DPERSO');
+		$mergedData = $this->mergeProffSubjectKeys($matricula);
+
+		for($i = 0; $i <= (count($mergedData) - 1); $i++){
+			$allProffKeys[$i] = $mergedData[$i]["clave_profesor"];
+		}
+
+		if ($conProff) {
+			$numero_registros = dbase_numrecords($conProff);
+			for	 ($j = 0; $j <= (count($allProffKeys) - 1); $j++)
+			{
+				for ($i = 1; $i <= $numero_registros; $i++) {
+					$fila = dbase_get_record_with_names($conProff, $i);
+					if (strcmp($fila["PERCVE"],$allProffKeys[$j]) == 0) {
+						$allProffNames[$j] = array(
+							'nombre_profesor'  => $fila['PERNOM'],
+							'apellido_profesor'  => $fila['PERAPE'],
+						);
+					break;  	
+					}              
+				}
+			}
+		}
+	
+		return $allProffNames;
+	}
+	/**
+	 * Descripcion: Método final que obtiene y devuelve en un array únicamente el Nombre de las materias que tiene el alumno actualmente.
+	 * Autor: Juan Octaviano
+	 * Fecha: 30/06/2019* 
+	 * */
+	public function getOnlySubjectNames($matricula)
+	{
+		$allSubjectsNames = array();
+		$allSubjectsKeys = array();
+
+		$allSubjectsKeys = array();
+		$conSubjects = $this->DB->DBFconnect('DMATER');
+		$mergedData = $this->mergeProffSubjectKeys($matricula);
+
+		for($i = 0; $i <= (count($mergedData) - 1); $i++){
+			$allSubjectsKeys[$i] = $mergedData[$i]["clave_materia"];
+		}
+		if ($conSubjects) {
+			$numero_registros = dbase_numrecords($conSubjects);
+			for	 ($j = 0; $j <= (count($allSubjectsKeys) - 1); $j++)
+			{
+				for ($i = 1; $i <= $numero_registros; $i++) {
+					$fila = dbase_get_record_with_names($conSubjects, $i);
+					if (strcmp($fila["MATCVE"],$allSubjectsKeys[$j]) == 0) {
+						$allSubjectsNames[$j] = array(
+							('nombre_materia ')  => $fila['MATNOM'],
+						);
+					break;  	
+					}              
+				}
+			}
+		}
+			
+		return $allSubjectsNames;
+	}
+}
 ?>
